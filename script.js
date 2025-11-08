@@ -36,3 +36,22 @@ const revObs = new IntersectionObserver((entries) => {
 },{ threshold: 0.08, rootMargin: '0px 0px -10% 0px'});
 
 revealEls.forEach(el => revObs.observe(el));
+
+// Mobile menu toggle
+const menuToggle = document.getElementById('menu-toggle');
+const navMenu = document.getElementById('nav-menu');
+
+menuToggle.addEventListener('click', () => {
+  menuToggle.classList.toggle('active');
+  navMenu.classList.toggle('open');
+  document.body.classList.toggle('menu-open');
+});
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    menuToggle.classList.remove('active');
+    navMenu.classList.remove('open');
+    document.body.classList.remove('menu-open');
+  });
+});

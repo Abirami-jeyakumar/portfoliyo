@@ -11,6 +11,82 @@
   --shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
 }
 
+/* Mobile Navbar */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  width: 28px;
+  height: 24px;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: var(--text);
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
+/* When menu is open (animate hamburger to X) */
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Mobile nav hidden by default */
+.nav {
+  display: flex;
+  gap: 18px;
+  transition: transform 0.3s ease;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 65%;
+    background: var(--bg-alt);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    transform: translateX(100%);
+    z-index: 1000;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav.open {
+    transform: translateX(0);
+  }
+
+  .nav-link {
+    font-size: 18px;
+    color: var(--text);
+  }
+
+  body.menu-open {
+    overflow: hidden; /* prevent scrolling when menu open */
+  }
+}
+
+
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{
